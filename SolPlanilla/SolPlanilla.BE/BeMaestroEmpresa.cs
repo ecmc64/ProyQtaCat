@@ -17,5 +17,7 @@ namespace SolPlanilla.BE
 
 
         public BeEstadoEntidad EstadoEntidad { get; set; }
+        
+        //Hola desde git
 	}
 }
