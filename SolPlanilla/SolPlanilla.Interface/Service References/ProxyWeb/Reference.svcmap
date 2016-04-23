@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e099fc60-d0d1-4e3f-9c1f-ca29bb9fb953" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8080/ServicioPlanilla" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicioPlanilla.wsdl" MetadataType="Wsdl" ID="b55fcc15-39f4-4e52-b811-9e6d1caba304" SourceId="1" SourceUrl="http://localhost:8080/ServicioPlanilla" />
+    <MetadataFile FileName="ServicioPlanilla.xsd" MetadataType="Schema" ID="53b8d75e-dd67-4b33-9e56-b733aff4f6c3" SourceId="1" SourceUrl="http://localhost:8080/ServicioPlanilla?xsd=xsd2" />
+    <MetadataFile FileName="ServicioPlanilla1.xsd" MetadataType="Schema" ID="fe69e681-12c9-4629-9e3a-2d892eacb1ec" SourceId="1" SourceUrl="http://localhost:8080/ServicioPlanilla?xsd=xsd1" />
+    <MetadataFile FileName="ServicioPlanilla2.xsd" MetadataType="Schema" ID="35e00f13-8e82-4960-94b1-513caf6d5471" SourceId="1" SourceUrl="http://localhost:8080/ServicioPlanilla?xsd=xsd3" />
+    <MetadataFile FileName="ServicioPlanilla3.xsd" MetadataType="Schema" ID="25a80621-5544-4993-957a-5c35f4f884b5" SourceId="1" SourceUrl="http://localhost:8080/ServicioPlanilla?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

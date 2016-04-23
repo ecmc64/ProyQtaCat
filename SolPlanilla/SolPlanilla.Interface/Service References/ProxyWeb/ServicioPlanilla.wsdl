@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServicioPlanilla" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="Tcp_EndPoint_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8080/ServicioPlanilla?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8080/ServicioPlanilla?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8080/ServicioPlanilla?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SolPlanilla.BE" />
+      <xsd:import schemaLocation="http://localhost:8080/ServicioPlanilla?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServicioPlanilla_TestConexion_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestConexion" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_TestConexion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestConexionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ConsultarCategoriaObrero_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarCategoriaObrero" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ConsultarCategoriaObrero_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarCategoriaObreroResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ConsultarCategoriaObreroLista_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarCategoriaObreroLista" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ConsultarCategoriaObreroLista_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarCategoriaObreroListaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_GrabarCategoriaObrero_InputMessage">
+    <wsdl:part name="parameters" element="tns:GrabarCategoriaObrero" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_GrabarCategoriaObrero_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GrabarCategoriaObreroResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ConsultarDocumento_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarDocumento" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ConsultarDocumento_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarDocumentoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ConsultarDocumentoLista_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarDocumentoLista" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ConsultarDocumentoLista_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarDocumentoListaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_GrabarDocumento_InputMessage">
+    <wsdl:part name="parameters" element="tns:GrabarDocumento" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_GrabarDocumento_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GrabarDocumentoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ConsultarObrero_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarObrero" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ConsultarObrero_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarObreroResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ConsultarObreroLista_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarObreroLista" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ConsultarObreroLista_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarObreroListaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_GrabarObrero_InputMessage">
+    <wsdl:part name="parameters" element="tns:GrabarObrero" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_GrabarObrero_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GrabarObreroResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ConsultarEmpresaLista_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarEmpresaLista" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ConsultarEmpresaLista_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarEmpresaListaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_GrabarEmpresa_InputMessage">
+    <wsdl:part name="parameters" element="tns:GrabarEmpresa" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_GrabarEmpresa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GrabarEmpresaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ConsultarUitLista_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarUitLista" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ConsultarUitLista_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarUitListaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_GrabarUit_InputMessage">
+    <wsdl:part name="parameters" element="tns:GrabarUit" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_GrabarUit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GrabarUitResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ConsultarTasaLista_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarTasaLista" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ConsultarTasaLista_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarTasaListaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_GrabarTasa_InputMessage">
+    <wsdl:part name="parameters" element="tns:GrabarTasa" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_GrabarTasa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GrabarTasaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ConsultarObrasLista_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarObrasLista" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ConsultarObrasLista_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarObrasListaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ImportarObrero_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportarObrero" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ImportarObrero_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportarObreroResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ImportarObras_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportarObras" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ImportarObras_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportarObrasResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServicioPlanilla">
+    <wsdl:operation name="TestConexion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/TestConexion" message="tns:IServicioPlanilla_TestConexion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPlanilla/TestConexionResponse" message="tns:IServicioPlanilla_TestConexion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarCategoriaObrero">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarCategoriaObrero" message="tns:IServicioPlanilla_ConsultarCategoriaObrero_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarCategoriaObreroResponse" message="tns:IServicioPlanilla_ConsultarCategoriaObrero_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarCategoriaObreroLista">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarCategoriaObreroLista" message="tns:IServicioPlanilla_ConsultarCategoriaObreroLista_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarCategoriaObreroListaResponse" message="tns:IServicioPlanilla_ConsultarCategoriaObreroLista_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GrabarCategoriaObrero">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/GrabarCategoriaObrero" message="tns:IServicioPlanilla_GrabarCategoriaObrero_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPlanilla/GrabarCategoriaObreroResponse" message="tns:IServicioPlanilla_GrabarCategoriaObrero_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarDocumento">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarDocumento" message="tns:IServicioPlanilla_ConsultarDocumento_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarDocumentoResponse" message="tns:IServicioPlanilla_ConsultarDocumento_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarDocumentoLista">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarDocumentoLista" message="tns:IServicioPlanilla_ConsultarDocumentoLista_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarDocumentoListaResponse" message="tns:IServicioPlanilla_ConsultarDocumentoLista_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GrabarDocumento">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/GrabarDocumento" message="tns:IServicioPlanilla_GrabarDocumento_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPlanilla/GrabarDocumentoResponse" message="tns:IServicioPlanilla_GrabarDocumento_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarObrero">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarObrero" message="tns:IServicioPlanilla_ConsultarObrero_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarObreroResponse" message="tns:IServicioPlanilla_ConsultarObrero_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarObreroLista">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarObreroLista" message="tns:IServicioPlanilla_ConsultarObreroLista_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarObreroListaResponse" message="tns:IServicioPlanilla_ConsultarObreroLista_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GrabarObrero">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/GrabarObrero" message="tns:IServicioPlanilla_GrabarObrero_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPlanilla/GrabarObreroResponse" message="tns:IServicioPlanilla_GrabarObrero_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarEmpresaLista">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarEmpresaLista" message="tns:IServicioPlanilla_ConsultarEmpresaLista_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarEmpresaListaResponse" message="tns:IServicioPlanilla_ConsultarEmpresaLista_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GrabarEmpresa">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/GrabarEmpresa" message="tns:IServicioPlanilla_GrabarEmpresa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPlanilla/GrabarEmpresaResponse" message="tns:IServicioPlanilla_GrabarEmpresa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarUitLista">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarUitLista" message="tns:IServicioPlanilla_ConsultarUitLista_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarUitListaResponse" message="tns:IServicioPlanilla_ConsultarUitLista_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GrabarUit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/GrabarUit" message="tns:IServicioPlanilla_GrabarUit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPlanilla/GrabarUitResponse" message="tns:IServicioPlanilla_GrabarUit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarTasaLista">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarTasaLista" message="tns:IServicioPlanilla_ConsultarTasaLista_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarTasaListaResponse" message="tns:IServicioPlanilla_ConsultarTasaLista_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GrabarTasa">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/GrabarTasa" message="tns:IServicioPlanilla_GrabarTasa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPlanilla/GrabarTasaResponse" message="tns:IServicioPlanilla_GrabarTasa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarObrasLista">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarObrasLista" message="tns:IServicioPlanilla_ConsultarObrasLista_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarObrasListaResponse" message="tns:IServicioPlanilla_ConsultarObrasLista_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportarObrero">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/ImportarObrero" message="tns:IServicioPlanilla_ImportarObrero_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPlanilla/ImportarObreroResponse" message="tns:IServicioPlanilla_ImportarObrero_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportarObras">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/ImportarObras" message="tns:IServicioPlanilla_ImportarObras_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPlanilla/ImportarObrasResponse" message="tns:IServicioPlanilla_ImportarObras_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Http_EndPoint" type="tns:IServicioPlanilla">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TestConexion">
+      <soap:operation soapAction="http://tempuri.org/IServicioPlanilla/TestConexion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarCategoriaObrero">
+      <soap:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarCategoriaObrero" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarCategoriaObreroLista">
+      <soap:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarCategoriaObreroLista" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GrabarCategoriaObrero">
+      <soap:operation soapAction="http://tempuri.org/IServicioPlanilla/GrabarCategoriaObrero" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarDocumento">
+      <soap:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarDocumento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarDocumentoLista">
+      <soap:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarDocumentoLista" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GrabarDocumento">
+      <soap:operation soapAction="http://tempuri.org/IServicioPlanilla/GrabarDocumento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarObrero">
+      <soap:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarObrero" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarObreroLista">
+      <soap:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarObreroLista" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GrabarObrero">
+      <soap:operation soapAction="http://tempuri.org/IServicioPlanilla/GrabarObrero" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarEmpresaLista">
+      <soap:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarEmpresaLista" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GrabarEmpresa">
+      <soap:operation soapAction="http://tempuri.org/IServicioPlanilla/GrabarEmpresa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarUitLista">
+      <soap:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarUitLista" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GrabarUit">
+      <soap:operation soapAction="http://tempuri.org/IServicioPlanilla/GrabarUit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarTasaLista">
+      <soap:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarTasaLista" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GrabarTasa">
+      <soap:operation soapAction="http://tempuri.org/IServicioPlanilla/GrabarTasa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarObrasLista">
+      <soap:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarObrasLista" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportarObrero">
+      <soap:operation soapAction="http://tempuri.org/IServicioPlanilla/ImportarObrero" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportarObras">
+      <soap:operation soapAction="http://tempuri.org/IServicioPlanilla/ImportarObras" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Tcp_EndPoint" type="tns:IServicioPlanilla">
+    <wsp:PolicyReference URI="#Tcp_EndPoint_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="TestConexion">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPlanilla/TestConexion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarCategoriaObrero">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarCategoriaObrero" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarCategoriaObreroLista">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarCategoriaObreroLista" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GrabarCategoriaObrero">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPlanilla/GrabarCategoriaObrero" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarDocumento">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarDocumento" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarDocumentoLista">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarDocumentoLista" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GrabarDocumento">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPlanilla/GrabarDocumento" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarObrero">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarObrero" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarObreroLista">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarObreroLista" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GrabarObrero">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPlanilla/GrabarObrero" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarEmpresaLista">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarEmpresaLista" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GrabarEmpresa">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPlanilla/GrabarEmpresa" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarUitLista">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarUitLista" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GrabarUit">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPlanilla/GrabarUit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarTasaLista">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarTasaLista" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GrabarTasa">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPlanilla/GrabarTasa" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarObrasLista">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarObrasLista" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportarObrero">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPlanilla/ImportarObrero" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportarObras">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPlanilla/ImportarObras" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicioPlanilla">
+    <wsdl:port name="Http_EndPoint" binding="tns:Http_EndPoint">
+      <soap:address location="http://localhost:8080/ServicioPlanilla" />
+    </wsdl:port>
+    <wsdl:port name="Tcp_EndPoint" binding="tns:Tcp_EndPoint">
+      <soap12:address location="net.tcp://localhost:8081/ServicioPlanilla" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8081/ServicioPlanilla</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>WIN-I37GCERGJRP\Zero</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

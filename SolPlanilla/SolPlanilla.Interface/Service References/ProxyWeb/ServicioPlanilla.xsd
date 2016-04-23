@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/SolPlanilla.BE" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SolPlanilla.BE" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8080/ServicioPlanilla?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:8080/ServicioPlanilla?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
+  <xs:complexType name="BeMaestroCategoriaObrero">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Activo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Empresa" nillable="true" type="tns:BeMaestroEmpresa" />
+      <xs:element minOccurs="0" name="EstadoEntidad" nillable="true" type="tns:BeEstadoEntidad" />
+      <xs:element minOccurs="0" name="FechaCreacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaModificacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IdCategoria" type="ser:guid" />
+      <xs:element minOccurs="0" name="UsuarioCreador" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UsuarioModificador" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BeMaestroCategoriaObrero" nillable="true" type="tns:BeMaestroCategoriaObrero" />
+  <xs:complexType name="BeMaestroEmpresa">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Activo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Direccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EstadoEntidad" nillable="true" type="tns:BeEstadoEntidad" />
+      <xs:element minOccurs="0" name="IdEmpresa" type="ser:guid" />
+      <xs:element minOccurs="0" name="RazonSocial" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Ruc" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BeMaestroEmpresa" nillable="true" type="tns:BeMaestroEmpresa" />
+  <xs:complexType name="BeEstadoEntidad">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Correcto" type="xs:boolean" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="ErrorEjecutar" nillable="true" type="q1:Exception" />
+      <xs:element minOccurs="0" name="NumeroFilasAfectadas" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BeEstadoEntidad" nillable="true" type="tns:BeEstadoEntidad" />
+  <xs:complexType name="ArrayOfBeMaestroCategoriaObrero">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BeMaestroCategoriaObrero" nillable="true" type="tns:BeMaestroCategoriaObrero" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBeMaestroCategoriaObrero" nillable="true" type="tns:ArrayOfBeMaestroCategoriaObrero" />
+  <xs:complexType name="BeMaestroDocumento">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Activo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Empresa" nillable="true" type="tns:BeMaestroEmpresa" />
+      <xs:element minOccurs="0" name="EstadoEntidad" nillable="true" type="tns:BeEstadoEntidad" />
+      <xs:element minOccurs="0" name="FechaCreacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaModificacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IdDocumento" type="ser:guid" />
+      <xs:element minOccurs="0" name="IdEmpresa" type="ser:guid" />
+      <xs:element minOccurs="0" name="NombreDocumento" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumDocumento" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UsuarioCreador" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UsuarioModificador" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BeMaestroDocumento" nillable="true" type="tns:BeMaestroDocumento" />
+  <xs:complexType name="ArrayOfBeMaestroDocumento">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BeMaestroDocumento" nillable="true" type="tns:BeMaestroDocumento" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBeMaestroDocumento" nillable="true" type="tns:ArrayOfBeMaestroDocumento" />
+  <xs:complexType name="BeMaestroObrero">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BeMaestroPersona">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Categoria" nillable="true" type="tns:BeMaestroCategoriaObrero" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BeMaestroObrero" nillable="true" type="tns:BeMaestroObrero" />
+  <xs:complexType name="BeMaestroPersona">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Activo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Apellidos" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Direccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Documento" nillable="true" type="tns:BeMaestroDocumento" />
+      <xs:element minOccurs="0" name="Empresa" nillable="true" type="tns:BeMaestroEmpresa" />
+      <xs:element minOccurs="0" name="EstadoEntidad" nillable="true" type="tns:BeEstadoEntidad" />
+      <xs:element minOccurs="0" name="FechaCreacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaModificacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IdPersona" type="ser:guid" />
+      <xs:element minOccurs="0" name="Nombres" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UsuarioCreador" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UsuarioModificador" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BeMaestroPersona" nillable="true" type="tns:BeMaestroPersona" />
+  <xs:complexType name="ArrayOfBeMaestroObrero">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BeMaestroObrero" nillable="true" type="tns:BeMaestroObrero" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBeMaestroObrero" nillable="true" type="tns:ArrayOfBeMaestroObrero" />
+  <xs:complexType name="ArrayOfBeMaestroEmpresa">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BeMaestroEmpresa" nillable="true" type="tns:BeMaestroEmpresa" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBeMaestroEmpresa" nillable="true" type="tns:ArrayOfBeMaestroEmpresa" />
+  <xs:complexType name="ArrayOfBeMaestroUit">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BeMaestroUit" nillable="true" type="tns:BeMaestroUit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBeMaestroUit" nillable="true" type="tns:ArrayOfBeMaestroUit" />
+  <xs:complexType name="BeMaestroUit">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Anio" type="xs:int" />
+      <xs:element minOccurs="0" name="Empresa" nillable="true" type="tns:BeMaestroEmpresa" />
+      <xs:element minOccurs="0" name="EstadoEntidad" nillable="true" type="tns:BeEstadoEntidad" />
+      <xs:element minOccurs="0" name="FechaCreacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaModificacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MontoUnidadImpositivaTrib" type="xs:decimal" />
+      <xs:element minOccurs="0" name="UsuarioCreador" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UsuarioModificador" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BeMaestroUit" nillable="true" type="tns:BeMaestroUit" />
+  <xs:complexType name="ArrayOfBeMaestroTasa">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BeMaestroTasa" nillable="true" type="tns:BeMaestroTasa" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBeMaestroTasa" nillable="true" type="tns:ArrayOfBeMaestroTasa" />
+  <xs:complexType name="BeMaestroTasa">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Empresa" nillable="true" type="tns:BeMaestroEmpresa" />
+      <xs:element minOccurs="0" name="EstadoEntidad" nillable="true" type="tns:BeEstadoEntidad" />
+      <xs:element minOccurs="0" name="FechaCreacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaModificacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IdTasa" type="ser:guid" />
+      <xs:element minOccurs="0" name="RentaExcesoUit" type="xs:int" />
+      <xs:element minOccurs="0" name="RentaHastaUit" type="xs:int" />
+      <xs:element minOccurs="0" name="Tasas" type="xs:decimal" />
+      <xs:element minOccurs="0" name="UsuarioCreador" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UsuarioModificador" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BeMaestroTasa" nillable="true" type="tns:BeMaestroTasa" />
+  <xs:complexType name="ArrayOfBeMaestroObras">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BeMaestroObras" nillable="true" type="tns:BeMaestroObras" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBeMaestroObras" nillable="true" type="tns:ArrayOfBeMaestroObras" />
+  <xs:complexType name="BeMaestroObras">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Activo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CodigoAntiguo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DireccionObra" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Empresa" nillable="true" type="tns:BeMaestroEmpresa" />
+      <xs:element minOccurs="0" name="EstadoEntidad" nillable="true" type="tns:BeEstadoEntidad" />
+      <xs:element minOccurs="0" name="FechaCreacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaFin" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaInicio" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaModificacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IdObra" type="ser:guid" />
+      <xs:element minOccurs="0" name="RucObra" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UsuarioCreador" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UsuarioModificador" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BeMaestroObras" nillable="true" type="tns:BeMaestroObras" />
+</xs:schema>
