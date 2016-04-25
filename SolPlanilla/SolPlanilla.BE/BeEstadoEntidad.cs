@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -13,5 +13,6 @@ namespace SolPlanilla.BE
         public int NumeroFilasAfectadas { get; set; }
         public Exception ErrorEjecutar { get; set; }
         //Mensaje desde Everis
+        //Segundo mensaje
     }
 }
