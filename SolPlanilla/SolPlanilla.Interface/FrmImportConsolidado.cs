@@ -42,6 +42,8 @@ namespace SolPlanilla.Interface
             using (var proxy = new  ProxyWeb.ServicioPlanillaClient(GlobalVars.PuertoWcf))
             {
                 var listadoObras = proxy.ConsultarObrasLista(GlobalVars.Empresa);
+                var listadoObreros = proxy.ConsultarCategoriaObreroLista(GlobalVars.Empresa);
+
             }
         }
         #endregion
