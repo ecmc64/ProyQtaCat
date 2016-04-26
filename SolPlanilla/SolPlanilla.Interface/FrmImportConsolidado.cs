@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SolPlanilla.BE;
+using System.IO;
 
 namespace SolPlanilla.Interface
 {
     public partial class FrmImportConsolidado : Form
     {
-        private string _rutaArchivo;
+        private string _rutaArchivo;  //nombre de archivo ee
+        private string _nombreArchivo;  //Path
         public FrmImportConsolidado()
         {
             InitializeComponent();
@@ -44,7 +47,23 @@ namespace SolPlanilla.Interface
                 var listadoObras = proxy.ConsultarObrasLista(GlobalVars.Empresa);
                 var listadoObreros = proxy.ConsultarCategoriaObreroLista(GlobalVars.Empresa);
 
+                foreach (var obra in listadoObras)
+                {
+                    if(ExisteArchivo(obra.CodigoAntiguo))
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
+                }
             }
+        }
+
+        private bool ExisteArchivo(string pCodigoObra)
+        {
+            return File.Exists(string.Concat(_rutaArchivo, pCodigoObra, ".mdb"));
         }
         #endregion
     }
