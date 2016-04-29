@@ -32,10 +32,10 @@ namespace SolPlanilla.Interface
             _rutaArchivo = txtRuta.Text.Trim();
 
             /*
-             * Listar obras
-             * Listar Obreros
-             * por obra, 
-             *      buscar archivo
+             * Listar obras ok
+             * Listar Obreros ok
+             * por obra, ok
+             *      buscar archivo ok
              *      leer tabla 9: codigos de equivalencia de obrero
              *      leer tabla 13: Periodos de Año / Mes / Semana inicio y fin
              *      Leer tablas con las semanas/Años enconrados en tabla 13
@@ -55,7 +55,7 @@ namespace SolPlanilla.Interface
                     }
                     else
                     {
-
+                        MessageBox.Show(string.Format("No existe archivo para {0}", obra.DireccionObra), "Buscar Archivo Obra", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
