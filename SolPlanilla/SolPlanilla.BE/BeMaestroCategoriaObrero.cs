@@ -19,5 +19,7 @@ namespace SolPlanilla.BE
 		public BeMaestroEmpresa Empresa { get; set; }
 
 	    public BeEstadoEntidad EstadoEntidad { get; set; }
+
+        //mensaje luis
 	}
 }

@@ -12,7 +12,7 @@ namespace SolPlanilla.BE
         public bool Correcto { get; set; }
         public int NumeroFilasAfectadas { get; set; }
         public Exception ErrorEjecutar { get; set; }
-        //Mensaje desde Everis
-        //Segundo mensaje
+        //Mensaje Luis
+        
     }
 }
