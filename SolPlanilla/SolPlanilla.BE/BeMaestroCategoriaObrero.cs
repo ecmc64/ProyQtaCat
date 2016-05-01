@@ -21,5 +21,6 @@ namespace SolPlanilla.BE
 	    public BeEstadoEntidad EstadoEntidad { get; set; }
 
         //mensaje luis
+        //mensaje luis 2
 	}
 }
