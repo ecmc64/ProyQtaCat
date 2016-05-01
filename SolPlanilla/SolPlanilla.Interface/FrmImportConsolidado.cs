@@ -51,11 +51,18 @@ namespace SolPlanilla.Interface
                 {
                     if(ExisteArchivo(obra.CodigoAntiguo))
                     {
+                        var objLeerMdb = new Clases.LeerMdb(string.Concat(_rutaArchivo, "WPAG", obra.CodigoAntiguo));
+                        var listaSemanasTrabajadas = objLeerMdb.ListarPeriodos(obra.CodigoAntiguo);
 
+                        foreach (var periodo in listaSemanasTrabajadas)
+                        {
+                            
+                        }
+                        
                     }
                     else
                     {
-                        MessageBox.Show(string.Format("No existe archivo para {0}", obra.DireccionObra), "Buscar Archivo Obra", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(string.Format("No existe archivo para {0}", obra.DireccionObra), @"Buscar Archivo Obra", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

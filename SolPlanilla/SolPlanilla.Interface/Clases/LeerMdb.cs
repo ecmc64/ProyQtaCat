@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Markup;
@@ -26,12 +27,16 @@ namespace SolPlanilla.Interface.Clases
             _rutaArchivo = pRutaArchivo;
         }
 
+        private string CadenaConexion()
+        {
+            return string.Format("Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0}", _rutaArchivo);
+        }
         public List<BeMaestroObrero> ListarObreros()
         {
             var lista = new List<BeMaestroObrero>();
             try
             {
-                var cadenaDeConexion = string.Format("Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0}", _rutaArchivo);
+                var cadenaDeConexion = CadenaConexion();
 
                 using (var cn = new OleDbConnection(cadenaDeConexion))
                 {
@@ -78,7 +83,7 @@ namespace SolPlanilla.Interface.Clases
             var lista = new List<BeMaestroObras>();
             try
             {
-                var cadenaDeConexion = string.Format("Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0}", _rutaArchivo);
+                var cadenaDeConexion = CadenaConexion();
 
                 using (var cn = new OleDbConnection(cadenaDeConexion))
                 {
@@ -123,6 +128,43 @@ namespace SolPlanilla.Interface.Clases
         public void LeerTablaObra()
         {
             
+        }
+
+        public List<BeImpPeriodos> ListarPeriodos(string pCodEmpresa)
+        {
+            var lista = new List<BeImpPeriodos>();
+
+            try
+            {
+                var cadenaDeConexion = CadenaConexion();
+
+                using (var cn = new OleDbConnection(cadenaDeConexion))
+                {
+                    var cmd = new OleDbCommand(string.Format("Select pCodEmpresa from FD13{0} ", pCodEmpresa), cn);
+                    cn.Open();
+                    using (var rdr = cmd.ExecuteReader())
+                    {
+                        while (rdr != null && rdr.Read())
+                        {
+                            var periodo = new BeImpPeriodos
+                            {
+                                Anio = rdr.GetInt32(0),
+                                Mes = rdr.GetInt32(1),
+                                SemanaInicio = rdr.GetInt32(2),
+                                SemanaFin = rdr.GetInt32(3)
+                            };
+
+                            lista.Add(periodo);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                lista = null;
+            }
+            return lista;
         }
 
     }
