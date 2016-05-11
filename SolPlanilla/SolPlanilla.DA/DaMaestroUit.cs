@@ -28,16 +28,7 @@ namespace SolPlanilla.DA
                 var oReader = db.ExecuteReader(cmd);
                 while (oReader.Read())
                 {
-                    var uit = new BE.BeMaestroUit();
-                    uit.Empresa = new BeMaestroEmpresa { IdEmpresa = HelperConsultas.GetValueSql<Guid>(oReader.GetValue(0)) };
-                    uit.Anio = HelperConsultas.GetValueSql<int>(oReader.GetValue(1));
-                    uit.MontoUnidadImpositivaTrib = HelperConsultas.GetValueSql<decimal>(oReader.GetValue(2));
-                    uit.UsuarioCreador = HelperConsultas.GetValueSql<string>(oReader.GetValue(3));
-                    uit.UsuarioModificador = HelperConsultas.GetValueSql<string>(oReader.GetValue(4));
-                    uit.FechaCreacion = HelperConsultas.GetValueSql<DateTime>(oReader.GetValue(5));
-                    uit.FechaModificacion = HelperConsultas.GetValueSql<DateTime>(oReader.GetValue(6));
-                    
-
+                    var uit = CargarEntidad(oReader);
                     uits.Add(uit);
 
                 }

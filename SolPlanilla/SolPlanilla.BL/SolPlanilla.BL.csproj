@@ -53,6 +53,7 @@
     <Compile Include="BlMaestroObrero.cs" />
     <Compile Include="BlMaestroTasa.cs" />
     <Compile Include="BlMaestroUit.cs" />
+    <Compile Include="BlPeriodos.cs" />
     <Compile Include="BlTrabajador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

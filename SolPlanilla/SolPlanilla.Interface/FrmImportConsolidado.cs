@@ -56,7 +56,15 @@ namespace SolPlanilla.Interface
 
                         foreach (var periodo in listaSemanasTrabajadas)
                         {
-                            
+                            /*
+                             * si validar e insertar/act periodo
+                             * Leer trabajadores del periodo tabla 9/ concatenar codigo general
+                             * Leer tabla 11 pago salarios
+                             * consolidar tabla para importacion
+                             * proxy enviar a importar/actualizar
+                             * sino
+                             * ya fue
+                             * */
                         }
                         
                     }

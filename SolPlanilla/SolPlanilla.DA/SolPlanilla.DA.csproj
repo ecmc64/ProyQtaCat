@@ -64,6 +64,7 @@
     <Compile Include="DaMaestroTasa.cs" />
     <Compile Include="DaMaestroTrabajador.cs" />
     <Compile Include="DaMaestroUit.cs" />
+    <Compile Include="DaPeriodos.cs" />
     <Compile Include="HelperConsultas.cs" />
     <Compile Include="DaMaestroObra.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
