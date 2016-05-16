@@ -20,7 +20,9 @@ namespace SolPlanilla.BE
 		public int Mes { get; set; }
 		public int SemanaInicio { get; set; }
 		public int SemanaFin { get; set; }
+	    public DateTime FechaInicio { get; set; }
+	    public DateTime FechaFin { get; set; }
 
-	    public BeEstadoEntidad Estado { get; set; }
+	    public BeEstadoEntidad EstadoEntidad { get; set; }
 	}
 }

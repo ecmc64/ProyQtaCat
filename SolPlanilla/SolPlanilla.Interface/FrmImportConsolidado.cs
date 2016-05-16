@@ -36,8 +36,10 @@ namespace SolPlanilla.Interface
              * Listar Obreros ok
              * por obra, ok
              *      buscar archivo ok
-             *      leer tabla 9: codigos de equivalencia de obrero
              *      leer tabla 13: Periodos de Año / Mes / Semana inicio y fin
+             *      Por Periodo / obra
+             *          validar e insertar/act periodo
+             *          leer tabla 9: codigos de equivalencia de obrero
              *      Leer tablas con las semanas/Años enconrados en tabla 13
              * */
 

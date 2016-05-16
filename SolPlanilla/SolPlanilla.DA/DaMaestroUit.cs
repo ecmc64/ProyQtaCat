@@ -32,7 +32,6 @@ namespace SolPlanilla.DA
                     uits.Add(uit);
 
                 }
-
             }
             catch (Exception ex)
             {
@@ -81,13 +80,13 @@ namespace SolPlanilla.DA
                 var comandoSql =
                     string.Concat(
                         "UPDATE dbo.MaestroUit ",
-                        "SET Anio=@pAnio,  ",
-                        "	MontoUnidadImpositivaTrib=@pMontoUnidadImpositivaTrib, ",
+                        "SET MontoUnidadImpositivaTrib=@pMontoUnidadImpositivaTrib, ",
                         "	UsuarioCreador=@pUsuarioCreador, ",
                         "	UsuarioModificador=@pUsuarioModificador, ",
                         "	FechaCreacion=@pFechaCreacion, ",
                         "	FechaModificacion=@pFechaModificacion ",
-                        "WHERE IdEmpresa=@pIdEmpresa");
+                        "WHERE IdEmpresa=@pIdEmpres ",
+                        "   AND Anio=@pAnio");
 
 
                 var db = DatabaseFactory.CreateDatabase(HelperConsultas.CadenaConexion);
