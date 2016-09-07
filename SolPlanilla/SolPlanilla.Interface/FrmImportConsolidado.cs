@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SolPlanilla.BE;
 using System.IO;
+using SolPlanilla.Interface.Clases;
 
 namespace SolPlanilla.Interface
 {
@@ -31,42 +32,78 @@ namespace SolPlanilla.Interface
         {
             _rutaArchivo = txtRuta.Text.Trim();
 
-            /*
-             * Listar obras ok
-             * Listar Obreros ok
-             * por obra, ok
-             *      buscar archivo ok
-             *      leer tabla 13: Periodos de Año / Mes / Semana inicio y fin
-             *      Por Periodo / obra
-             *          validar e insertar/act periodo
-             *          leer tabla 9: codigos de equivalencia de obrero
-             *      Leer tablas con las semanas/Años enconrados en tabla 13
-             * */
-
-            //Listar obras
             using (var proxy = new  ProxyWeb.ServicioPlanillaClient(GlobalVars.PuertoWcf))
             {
                 var listadoObras = proxy.ConsultarObrasLista(GlobalVars.Empresa);
-                var listadoObreros = proxy.ConsultarCategoriaObreroLista(GlobalVars.Empresa);
+                //var listadoObreros = proxy.ConsultarCategoriaObreroLista(GlobalVars.Empresa);
+                var listadoPeriodosSistema = proxy.ConsultarPeriodoLista(GlobalVars.Empresa);
+                var objPeriodo = new BePeriodos();
 
-                foreach (var obra in listadoObras)
+                foreach (var obra in listadoObras) //Por cada obra
                 {
                     if(ExisteArchivo(obra.CodigoAntiguo))
                     {
                         var objLeerMdb = new Clases.LeerMdb(string.Concat(_rutaArchivo, "WPAG", obra.CodigoAntiguo));
                         var listaSemanasTrabajadas = objLeerMdb.ListarPeriodos(obra.CodigoAntiguo);
 
-                        foreach (var periodo in listaSemanasTrabajadas)
+                        foreach (var periodo in listaSemanasTrabajadas) //Por cada registro de semanas definidas por cada mes
                         {
-                            /*
-                             * si validar e insertar/act periodo
-                             * Leer trabajadores del periodo tabla 9/ concatenar codigo general
-                             * Leer tabla 11 pago salarios
-                             * consolidar tabla para importacion
-                             * proxy enviar a importar/actualizar
-                             * sino
-                             * ya fue
-                             * */
+                            if (!SincronizarPeriodoSistema(periodo, listadoPeriodosSistema, objPeriodo))
+                            {
+                                objPeriodo = proxy.GrabarPeriodos(objPeriodo, true);  //Sincroniza periodos del sistema en la importacion
+                                listadoPeriodosSistema.Add(objPeriodo);
+                            }
+
+                            for (var semana = objPeriodo.SemanaInicio; semana <= objPeriodo.SemanaFin; semana++) // Recorrido de inicio a fin del mes por semanas
+                            {
+                                var listaCodigoTrabajadorSemana = objLeerMdb.ListarCodigoSemanaDelObrero(semana.ToString("00"), objPeriodo.Anio.ToString("####"));
+                                var listaPagoTrabajadoresSemana = objLeerMdb.ListarPagoObreroSemana(semana.ToString("00"), objPeriodo.Anio.ToString("####"));
+
+                                foreach (var codigoEquivalencia in listaCodigoTrabajadorSemana) //Recorriendo tabla de equivalencias de codigo y trabajadores para importar
+                                {
+                                    var objTrabSemana =
+                                        listaPagoTrabajadoresSemana.Find(
+                                            x => x.CodigoObra == codigoEquivalencia.CodigoSemana);
+
+                                    var objPeriodosDeObra = new BePeriodosDeObras
+                                    {
+                                        Empresa = GlobalVars.Empresa,
+                                        Obra = obra,
+                                        Periodo = objPeriodo
+                                    };
+                                    objPeriodosDeObra.UsuarioCreador = objPeriodosDeObra.UsuarioModificador = GlobalVars.Usuario;
+                                    objPeriodosDeObra.FechaCreacion = objPeriodosDeObra.FechaModificacion = DateTime.Now;
+
+                                    objPeriodosDeObra.Obrero = new BeMaestroObrero
+                                    {
+                                        CodigoAlterno = codigoEquivalencia.Codigo
+                                    };
+                                    objPeriodosDeObra.Jornal = objTrabSemana.Jornal;
+                                    objPeriodosDeObra.Dominical = objTrabSemana.Dominical;
+                                    objPeriodosDeObra.DescansoMedico = objTrabSemana.DescansoMedico;
+                                    objPeriodosDeObra.Feriado = objTrabSemana.Feriado;
+                                    objPeriodosDeObra.Buc = objTrabSemana.Buc;
+                                    objPeriodosDeObra.Altura = objTrabSemana.Altura;
+                                    objPeriodosDeObra.Agua = objTrabSemana.Agua;
+                                    objPeriodosDeObra.Pasaje = objTrabSemana.Pasaje;
+                                    objPeriodosDeObra.Escolar = objTrabSemana.Escolar;
+                                    objPeriodosDeObra.Movilidad = objTrabSemana.Movilidad;
+                                    objPeriodosDeObra.HoraExtra = objTrabSemana.HoraExtra;
+                                    objPeriodosDeObra.Reintegro = objTrabSemana.Reintegro;
+                                    objPeriodosDeObra.Vacaciones = objTrabSemana.Vacaciones;
+                                    objPeriodosDeObra.Gratificacion = objTrabSemana.Gratificacion;
+                                    objPeriodosDeObra.Viatico = objTrabSemana.Viatico;
+                                    objPeriodosDeObra.Sepelio = objTrabSemana.Sepelio;
+                                    objPeriodosDeObra.Altitud = objTrabSemana.Altitud;
+                                    objPeriodosDeObra.Ley29351 = objTrabSemana.Ley29351;
+
+
+                                    //objPeriodosDeObra = proxy.ImportarPagosDeObras(objPeriodosDeObra);
+
+                                    //Evaluar si existe error
+                                }
+                            }
+                            
                         }
                         
                     }
@@ -80,7 +117,38 @@ namespace SolPlanilla.Interface
 
         private bool ExisteArchivo(string pCodigoObra)
         {
-            return File.Exists(string.Concat(_rutaArchivo, pCodigoObra, ".mdb"));
+            return File.Exists(string.Concat(_rutaArchivo, "WPAG", pCodigoObra, ".mdb"));
+        }
+
+        private bool SincronizarPeriodoSistema(BeImpPeriodos pPeriodoImportado, List<BePeriodos> pListaPeriodosSistema, BePeriodos pObjPeriodo)
+        {
+            var insUpdPeriodo = pListaPeriodosSistema.Exists(
+                x =>
+                    x.Anio == pPeriodoImportado.Anio && x.Mes == pPeriodoImportado.Mes &&
+                    x.SemanaInicio == pPeriodoImportado.SemanaInicio);
+
+            if (insUpdPeriodo)
+            {
+                pObjPeriodo = pListaPeriodosSistema.Find(x =>
+                    x.Anio == pPeriodoImportado.Anio && x.Mes == pPeriodoImportado.Mes &&
+                    x.SemanaInicio == pPeriodoImportado.SemanaInicio);
+            }
+            else
+            {
+                pObjPeriodo.IdPeriodo = new Guid();
+                pObjPeriodo.Empresa = GlobalVars.Empresa;
+                pObjPeriodo.Activo = true;
+                pObjPeriodo.Anio = pPeriodoImportado.Anio;
+                pObjPeriodo.FechaCreacion = DateTime.Now;
+                pObjPeriodo.FechaModificacion = DateTime.Now;
+                pObjPeriodo.Mes = pPeriodoImportado.Mes;
+                pObjPeriodo.UsuarioCreador = GlobalVars.Usuario;
+                pObjPeriodo.UsuarioModificador = GlobalVars.Usuario;
+                pObjPeriodo.SemanaInicio = pPeriodoImportado.SemanaInicio;
+                pObjPeriodo.SemanaFin = pPeriodoImportado.SemanaFin;
+
+            }
+            return insUpdPeriodo;
         }
         #endregion
     }

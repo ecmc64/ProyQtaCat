@@ -48,6 +48,7 @@ namespace SolPlanilla.Interface.Clases
                         {
                             var obrero = new BeMaestroObrero();
                             obrero.IdPersona = Guid.NewGuid();
+                            obrero.CodigoAlterno = rdr.GetString(0);
                             obrero.Nombres = rdr.GetString(1);
                             obrero.Apellidos = string.Format("{0} {1}", rdr.GetString(2), rdr.GetString(3));
                             obrero.Direccion = rdr.GetString(4);
@@ -167,5 +168,95 @@ namespace SolPlanilla.Interface.Clases
             return lista;
         }
 
+        public List<BeImpObreroSemana> ListarCodigoSemanaDelObrero(string pSemana, string pAnio)
+        {
+            var lista = new List<BeImpObreroSemana>();
+
+            try
+            {
+                var cadenaDeConexion = CadenaConexion();
+
+                using (var cn = new OleDbConnection(cadenaDeConexion))
+                {
+                    var cmd = new OleDbCommand(string.Format("Select PEOrig,PECodi from 09{0}{1} ", pSemana, pAnio), cn);
+                    cn.Open();
+                    using (var rdr = cmd.ExecuteReader())
+                    {
+                        while (rdr != null && rdr.Read())
+                        {
+                            var periodo = new BeImpObreroSemana
+                            {
+                                Codigo = rdr.GetString(0),
+                                CodigoSemana = rdr.GetString(1)
+                            };
+
+                            lista.Add(periodo);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                lista = null;
+            }
+            return lista;
+        }
+
+        public List<BeImpPagosObreros> ListarPagoObreroSemana(string pSemana, string pAnio)
+        {
+            var lista = new List<BeImpPagosObreros>();
+
+            try
+            {
+                var cadenaDeConexion = CadenaConexion();
+
+                using (var cn = new OleDbConnection(cadenaDeConexion))
+                {
+                    var cmd =
+                        new OleDbCommand(
+                            string.Format(
+                                "Select Codis11,Rjors11,Rdoms11,Rmeds11,Rfers11,Rbucs11,Ralts11,Ragus11,Resps11,Rescs11,Rmovs11,Rhess11,Rreis11,Rvacs11,Rgras11,Rotrs11,Rseps11,Ralls11,Grats11 from 11{0}{1} ",
+                                pSemana, pAnio), cn);
+                    cn.Open();
+                    using (var rdr = cmd.ExecuteReader())
+                    {
+                        while (rdr != null && rdr.Read())
+                        {
+                            var periodo = new BeImpPagosObreros
+                            {
+                                CodigoObra = rdr.GetString(0),
+                                Jornal = (double)rdr.GetDecimal(1),
+                                Dominical = (double)rdr.GetDecimal(2),
+                                DescansoMedico = (double)rdr.GetDecimal(3),
+                                Feriado = (double)rdr.GetDecimal(4),
+                                Buc = (double)rdr.GetDecimal(5),
+                                Altura = (double)rdr.GetDecimal(6),
+                                Agua = (double)rdr.GetDecimal(7),
+                                Pasaje = (double)rdr.GetDecimal(8),
+                                Escolar = (double)rdr.GetDecimal(9),
+                                Movilidad = (double)rdr.GetDecimal(10),
+                                HoraExtra = (double)rdr.GetDecimal(11),
+                                Reintegro = (double)rdr.GetDecimal(12),
+                                Vacaciones = (double)rdr.GetDecimal(13),
+                                Gratificacion = (double)rdr.GetDecimal(14),
+                                Viatico = (double)rdr.GetDecimal(15),
+                                Sepelio = (double)rdr.GetDecimal(16),
+                                Altitud = (double)rdr.GetDecimal(17),
+                                Ley29351 = (double)rdr.GetDecimal(18)
+                            };
+
+                            lista.Add(periodo);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                lista = null;
+            }
+            return lista;
+        }
     }
 }

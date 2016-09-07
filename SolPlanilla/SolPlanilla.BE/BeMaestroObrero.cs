@@ -10,5 +10,6 @@ namespace SolPlanilla.BE
 	public class BeMaestroObrero : BeMaestroPersona
 	{
 		public BeMaestroCategoriaObrero Categoria { get; set; }
+        public string CodigoAlterno { get; set; }
     }
 }

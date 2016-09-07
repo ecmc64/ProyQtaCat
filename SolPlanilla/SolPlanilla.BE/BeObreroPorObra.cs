@@ -9,13 +9,16 @@ namespace SolPlanilla.BE
 {
 	public class BeObreroPorObra
 	{
-		public Guid IdEmpresa { get; set; }
-		public Guid IdObra { get; set; }
-		public Guid IdPersona { get; set; }
+		public BeMaestroEmpresa Empresa { get; set; }
+		public BeMaestroObras Obra { get; set; }
+		public BeMaestroObrero Obrero { get; set; }
+		public BeMaestroCategoriaObrero CategoriaObrero { get; set; }
 		public string UsuarioCreador { get; set; }
 		public DateTime FechaCreacion { get; set; }
 		public string UsuarioModificador { get; set; }
 		public DateTime FechaModificacion { get; set; }
 		public bool Activo { get; set; }
+
+		public BeEstadoEntidad EstadoEntidad { get; set; }
 	}
 }

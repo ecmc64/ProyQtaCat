@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
@@ -172,6 +173,24 @@ namespace SolPlanilla.WCF
         }
         #endregion
 
+        #region Periodos
+        public List<BePeriodos> ConsultarPeriodoLista(BeMaestroEmpresa pEmpresa)
+        {
+            var oBlPeriodos = new BlPeriodos();
+            var listado = oBlPeriodos.ListarPeriodos(pEmpresa);
+            oBlPeriodos = null;
+            return listado;
+        }
+
+        public BePeriodos GrabarPeriodos(BePeriodos pPeriodo, bool pGrabar)
+        {
+            var oBlPeriodos = new BlPeriodos();
+            pPeriodo = oBlPeriodos.GrabarPeriodos(pPeriodo, pGrabar);
+            oBlPeriodos = null;
+            return pPeriodo;
+        }
+        #endregion
+
         #endregion
 
 
@@ -188,6 +207,13 @@ namespace SolPlanilla.WCF
         {
             var oBlObras = new BlMaestroObras();
             return oBlObras.ImportarObras(pObra);
+        }
+
+        public BePeriodosDeObras ImportarPagosDeObras(BePeriodosDeObras pPeriodosDeObras)
+        {
+
+
+            return pPeriodosDeObras;
         }
         #endregion
 

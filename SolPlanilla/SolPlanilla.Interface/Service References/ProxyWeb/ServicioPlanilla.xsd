@@ -167,4 +167,29 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="BeMaestroObras" nillable="true" type="tns:BeMaestroObras" />
+  <xs:complexType name="ArrayOfBePeriodos">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BePeriodos" nillable="true" type="tns:BePeriodos" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBePeriodos" nillable="true" type="tns:ArrayOfBePeriodos" />
+  <xs:complexType name="BePeriodos">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Activo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Anio" type="xs:int" />
+      <xs:element minOccurs="0" name="Empresa" nillable="true" type="tns:BeMaestroEmpresa" />
+      <xs:element minOccurs="0" name="EstadoEntidad" nillable="true" type="tns:BeEstadoEntidad" />
+      <xs:element minOccurs="0" name="FechaCreacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaFin" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaInicio" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaModificacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IdPeriodo" type="ser:guid" />
+      <xs:element minOccurs="0" name="Mes" type="xs:int" />
+      <xs:element minOccurs="0" name="SemanaFin" type="xs:int" />
+      <xs:element minOccurs="0" name="SemanaInicio" type="xs:int" />
+      <xs:element minOccurs="0" name="UsuarioCreador" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UsuarioModificador" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BePeriodos" nillable="true" type="tns:BePeriodos" />
 </xs:schema>

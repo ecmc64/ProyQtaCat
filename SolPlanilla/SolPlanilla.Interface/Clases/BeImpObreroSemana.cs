@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SolPlanilla.Interface.Clases
 {
-    internal class BeImpEquivalenciaCodigos //por la weee
+    internal class BeImpObreroSemana
     {
-        public int CodigoGlobal { get; set; }
-        public int CodigoObra { get; set; }
+        public string Codigo { get; set; }
+        public string CodigoSemana { get; set; }
     }
 }

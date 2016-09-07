@@ -139,6 +139,18 @@
   <wsdl:message name="IServicioPlanilla_ConsultarObrasLista_OutputMessage">
     <wsdl:part name="parameters" element="tns:ConsultarObrasListaResponse" />
   </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ConsultarPeriodoLista_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarPeriodoLista" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_ConsultarPeriodoLista_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarPeriodoListaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_GrabarPeriodos_InputMessage">
+    <wsdl:part name="parameters" element="tns:GrabarPeriodos" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPlanilla_GrabarPeriodos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GrabarPeriodosResponse" />
+  </wsdl:message>
   <wsdl:message name="IServicioPlanilla_ImportarObrero_InputMessage">
     <wsdl:part name="parameters" element="tns:ImportarObrero" />
   </wsdl:message>
@@ -219,6 +231,14 @@
     <wsdl:operation name="ConsultarObrasLista">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarObrasLista" message="tns:IServicioPlanilla_ConsultarObrasLista_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarObrasListaResponse" message="tns:IServicioPlanilla_ConsultarObrasLista_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarPeriodoLista">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarPeriodoLista" message="tns:IServicioPlanilla_ConsultarPeriodoLista_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPlanilla/ConsultarPeriodoListaResponse" message="tns:IServicioPlanilla_ConsultarPeriodoLista_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GrabarPeriodos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/GrabarPeriodos" message="tns:IServicioPlanilla_GrabarPeriodos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPlanilla/GrabarPeriodosResponse" message="tns:IServicioPlanilla_GrabarPeriodos_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ImportarObrero">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioPlanilla/ImportarObrero" message="tns:IServicioPlanilla_ImportarObrero_InputMessage" />
@@ -377,6 +397,24 @@
     </wsdl:operation>
     <wsdl:operation name="ConsultarObrasLista">
       <soap:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarObrasLista" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarPeriodoLista">
+      <soap:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarPeriodoLista" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GrabarPeriodos">
+      <soap:operation soapAction="http://tempuri.org/IServicioPlanilla/GrabarPeriodos" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -552,6 +590,24 @@
     </wsdl:operation>
     <wsdl:operation name="ConsultarObrasLista">
       <soap12:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarObrasLista" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarPeriodoLista">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPlanilla/ConsultarPeriodoLista" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GrabarPeriodos">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPlanilla/GrabarPeriodos" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

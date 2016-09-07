@@ -96,7 +96,14 @@ namespace SolPlanilla.WCF
         [OperationContract]
         List<BeMaestroObras> ConsultarObrasLista(BeMaestroEmpresa pEmpresa);
 
+        #endregion
 
+        #region Periodos
+        [OperationContract]
+        List<BePeriodos> ConsultarPeriodoLista(BeMaestroEmpresa pEmpresa);
+
+        [OperationContract]
+        BePeriodos GrabarPeriodos(BePeriodos pPeriodo, bool pGrabar);
         #endregion
 
         #endregion
@@ -108,6 +115,9 @@ namespace SolPlanilla.WCF
 
         [OperationContract]
         BeMaestroObras ImportarObras(BeMaestroObras pObra);
+
+        [OperationContract]
+        BePeriodosDeObras ImportarPagosDeObras(BePeriodosDeObras pPeriodosDeObras);
 
         #endregion
     }

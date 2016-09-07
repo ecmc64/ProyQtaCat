@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace SolPlanilla.DA
     public class DaMaestroObrero
     {
         public Exception ErrorConsulta;
-        private const string CadenaSelect = @"select IdPersona, IdEmpresa, IdCategoria ";
+        private const string CadenaSelect = @"select IdPersona, IdEmpresa, IdCategoria, CodigoAlterno ";
 
         public BeMaestroObrero GetMaestroObrero(BeMaestroObrero pObrero)
         {
@@ -76,14 +77,12 @@ namespace SolPlanilla.DA
         {
             try
             {
-                var comandoSql = string.Concat("INSERT INTO dbo.MaestroObrero ( IdPersona, IdEmpresa, IdCategoria ) ",
-                    "VALUES  ( @pIdPersona, @pIdEmpresa, @pIdCategoria  )");
+                var comandoSql = string.Concat("INSERT INTO dbo.MaestroObrero ( IdPersona, IdEmpresa, IdCategoria, CodigoAlterno ) ",
+                    "VALUES  ( @pIdPersona, @pIdEmpresa, @pIdCategoria, @pCodigoAlterno)");
                 var db = DatabaseFactory.CreateDatabase(HelperConsultas.CadenaConexion);
                 var cmd = db.GetSqlStringCommand(comandoSql);
 
-                cmd.Parameters.Add(HelperConsultas.CrearParametro(cmd, "@pIdEmpresa", DbType.Guid, pObrero.Empresa.IdEmpresa));
-                cmd.Parameters.Add(HelperConsultas.CrearParametro(cmd, "@pIdPersona", DbType.Guid, pObrero.IdPersona));
-                cmd.Parameters.Add(HelperConsultas.CrearParametro(cmd, "@pIdCategoria", DbType.Guid, pObrero.Categoria.IdCategoria));
+                CargarParametros(cmd, pObrero);
 
                 var filas = db.ExecuteNonQuery(cmd);
 
@@ -106,16 +105,15 @@ namespace SolPlanilla.DA
                 var comandoSql =
                     string.Concat(
                         "UPDATE dbo.MaestroObrero ",
-                        "SET IdCategoria=@pIdCategoria  ",
+                        "SET IdCategoria=@pIdCategoria ",
+                        "    CodigoAlterno=@pCodigoAlterno ",
                         "WHERE IdPersona=@pIdPersona ",
                         "	AND IdEmpresa=@pIdEmpresa");
                 var db = DatabaseFactory.CreateDatabase(HelperConsultas.CadenaConexion);
                 var cmd = db.GetSqlStringCommand(comandoSql);
 
-                cmd.Parameters.Add(HelperConsultas.CrearParametro(cmd, "@pIdEmpresa", DbType.Guid, pObrero.Empresa.IdEmpresa));
-                cmd.Parameters.Add(HelperConsultas.CrearParametro(cmd, "@pIdPersona", DbType.Guid, pObrero.IdPersona));
-                cmd.Parameters.Add(HelperConsultas.CrearParametro(cmd, "@pIdCategoria", DbType.Guid, pObrero.Categoria.IdCategoria));
-
+                CargarParametros(cmd, pObrero);
+                
                 var filas = db.ExecuteNonQuery(cmd);
 
                 pObrero.EstadoEntidad = HelperConsultas.SetEstadoEntidad(true, filas, null);
@@ -143,7 +141,7 @@ namespace SolPlanilla.DA
                 {
                     IdCategoria = HelperConsultas.GetValueSql<Guid>(pReader.GetValue(2))
                 };
-
+                obrero.CodigoAlterno = HelperConsultas.GetValueSql<string>(pReader.GetValue(3));
 
             }
             catch (Exception ex)
@@ -153,6 +151,14 @@ namespace SolPlanilla.DA
             }
 
             return obrero;
+        }
+
+        private void CargarParametros(DbCommand pCmd, BeMaestroObrero pObrero)
+        {
+            pCmd.Parameters.Add(HelperConsultas.CrearParametro(pCmd, "@pIdEmpresa", DbType.Guid, pObrero.Empresa.IdEmpresa));
+            pCmd.Parameters.Add(HelperConsultas.CrearParametro(pCmd, "@pIdPersona", DbType.Guid, pObrero.IdPersona));
+            pCmd.Parameters.Add(HelperConsultas.CrearParametro(pCmd, "@pIdCategoria", DbType.Guid, pObrero.Categoria.IdCategoria));
+            pCmd.Parameters.Add(HelperConsultas.CrearParametro(pCmd, "@pCodigoAlterno", DbType.Guid, pObrero.CodigoAlterno));
         }
     }
 }

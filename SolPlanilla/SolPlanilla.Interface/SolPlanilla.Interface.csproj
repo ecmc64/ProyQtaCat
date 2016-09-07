@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\BeImpEquivalenciaCodigos.cs" />
+    <Compile Include="Clases\BeImpObreroSemana.cs" />
     <Compile Include="Clases\BeImpPagosObreros.cs" />
     <Compile Include="Clases\BeImpPeriodos.cs" />
     <Compile Include="Clases\ImporacionPagos.cs" />
@@ -208,6 +209,7 @@
     <None Include="Properties\DataSources\SolPlanilla.BE.BeMaestroObrero.datasource" />
     <None Include="Properties\DataSources\SolPlanilla.BE.BeMaestroTasa.datasource" />
     <None Include="Properties\DataSources\SolPlanilla.BE.BeMaestroUit.datasource" />
+    <None Include="Properties\DataSources\SolPlanilla.BE.BePeriodos.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

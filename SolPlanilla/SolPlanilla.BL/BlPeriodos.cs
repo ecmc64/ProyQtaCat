@@ -15,8 +15,27 @@ namespace SolPlanilla.BL
             var oDaPeriodo = new DaPeriodos();
 
             var periodo = oDaPeriodo.GetPeriodoByAnioMes(pPeriodo);
-
+            oDaPeriodo = null;
             return true;
         }
+
+        public BePeriodos GrabarPeriodos(BePeriodos pPeriodo, bool pGrabar)
+        {
+            var oDaPeriodo = new DaPeriodos();
+
+            pPeriodo = pGrabar ? oDaPeriodo.InsPeriodos(pPeriodo) : oDaPeriodo.UpdPeriodos(pPeriodo);
+            oDaPeriodo = null;
+            return pPeriodo;
+        }
+
+        public List<BePeriodos> ListarPeriodos(BeMaestroEmpresa pEmpresa)
+        {
+            var oDaPeriodo = new DaPeriodos();
+
+            var lista = oDaPeriodo.GetPeriodos(pEmpresa);
+            oDaPeriodo = null;
+            return lista;
+        }
+
     }
 }

@@ -237,31 +237,60 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ConsultarPeriodoLista">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/SolPlanilla.BE" minOccurs="0" name="pEmpresa" nillable="true" type="q30:BeMaestroEmpresa" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultarPeriodoListaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/SolPlanilla.BE" minOccurs="0" name="ConsultarPeriodoListaResult" nillable="true" type="q31:ArrayOfBePeriodos" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GrabarPeriodos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/SolPlanilla.BE" minOccurs="0" name="pPeriodo" nillable="true" type="q32:BePeriodos" />
+        <xs:element minOccurs="0" name="pGrabar" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GrabarPeriodosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/SolPlanilla.BE" minOccurs="0" name="GrabarPeriodosResult" nillable="true" type="q33:BePeriodos" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="ImportarObrero">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/SolPlanilla.BE" minOccurs="0" name="pObrero" nillable="true" type="q30:BeMaestroObrero" />
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/SolPlanilla.BE" minOccurs="0" name="pObrero" nillable="true" type="q34:BeMaestroObrero" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ImportarObreroResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/SolPlanilla.BE" minOccurs="0" name="ImportarObreroResult" nillable="true" type="q31:BeMaestroObrero" />
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/SolPlanilla.BE" minOccurs="0" name="ImportarObreroResult" nillable="true" type="q35:BeMaestroObrero" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ImportarObras">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/SolPlanilla.BE" minOccurs="0" name="pObra" nillable="true" type="q32:BeMaestroObras" />
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/SolPlanilla.BE" minOccurs="0" name="pObra" nillable="true" type="q36:BeMaestroObras" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ImportarObrasResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/SolPlanilla.BE" minOccurs="0" name="ImportarObrasResult" nillable="true" type="q33:BeMaestroObras" />
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/SolPlanilla.BE" minOccurs="0" name="ImportarObrasResult" nillable="true" type="q37:BeMaestroObras" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

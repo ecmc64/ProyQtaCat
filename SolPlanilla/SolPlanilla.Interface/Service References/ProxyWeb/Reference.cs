@@ -117,6 +117,18 @@ namespace SolPlanilla.Interface.ProxyWeb {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioPlanilla/ConsultarObrasLista", ReplyAction="http://tempuri.org/IServicioPlanilla/ConsultarObrasListaResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<SolPlanilla.BE.BeMaestroObras>> ConsultarObrasListaAsync(SolPlanilla.BE.BeMaestroEmpresa pEmpresa);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioPlanilla/ConsultarPeriodoLista", ReplyAction="http://tempuri.org/IServicioPlanilla/ConsultarPeriodoListaResponse")]
+        System.Collections.Generic.List<SolPlanilla.BE.BePeriodos> ConsultarPeriodoLista(SolPlanilla.BE.BeMaestroEmpresa pEmpresa);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioPlanilla/ConsultarPeriodoLista", ReplyAction="http://tempuri.org/IServicioPlanilla/ConsultarPeriodoListaResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<SolPlanilla.BE.BePeriodos>> ConsultarPeriodoListaAsync(SolPlanilla.BE.BeMaestroEmpresa pEmpresa);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioPlanilla/GrabarPeriodos", ReplyAction="http://tempuri.org/IServicioPlanilla/GrabarPeriodosResponse")]
+        SolPlanilla.BE.BePeriodos GrabarPeriodos(SolPlanilla.BE.BePeriodos pPeriodo, bool pGrabar);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioPlanilla/GrabarPeriodos", ReplyAction="http://tempuri.org/IServicioPlanilla/GrabarPeriodosResponse")]
+        System.Threading.Tasks.Task<SolPlanilla.BE.BePeriodos> GrabarPeriodosAsync(SolPlanilla.BE.BePeriodos pPeriodo, bool pGrabar);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioPlanilla/ImportarObrero", ReplyAction="http://tempuri.org/IServicioPlanilla/ImportarObreroResponse")]
         SolPlanilla.BE.BeMaestroObrero ImportarObrero(SolPlanilla.BE.BeMaestroObrero pObrero);
         
@@ -291,6 +303,22 @@ namespace SolPlanilla.Interface.ProxyWeb {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<SolPlanilla.BE.BeMaestroObras>> ConsultarObrasListaAsync(SolPlanilla.BE.BeMaestroEmpresa pEmpresa) {
             return base.Channel.ConsultarObrasListaAsync(pEmpresa);
+        }
+        
+        public System.Collections.Generic.List<SolPlanilla.BE.BePeriodos> ConsultarPeriodoLista(SolPlanilla.BE.BeMaestroEmpresa pEmpresa) {
+            return base.Channel.ConsultarPeriodoLista(pEmpresa);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<SolPlanilla.BE.BePeriodos>> ConsultarPeriodoListaAsync(SolPlanilla.BE.BeMaestroEmpresa pEmpresa) {
+            return base.Channel.ConsultarPeriodoListaAsync(pEmpresa);
+        }
+        
+        public SolPlanilla.BE.BePeriodos GrabarPeriodos(SolPlanilla.BE.BePeriodos pPeriodo, bool pGrabar) {
+            return base.Channel.GrabarPeriodos(pPeriodo, pGrabar);
+        }
+        
+        public System.Threading.Tasks.Task<SolPlanilla.BE.BePeriodos> GrabarPeriodosAsync(SolPlanilla.BE.BePeriodos pPeriodo, bool pGrabar) {
+            return base.Channel.GrabarPeriodosAsync(pPeriodo, pGrabar);
         }
         
         public SolPlanilla.BE.BeMaestroObrero ImportarObrero(SolPlanilla.BE.BeMaestroObrero pObrero) {
