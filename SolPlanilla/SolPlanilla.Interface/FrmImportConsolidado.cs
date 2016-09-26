@@ -76,7 +76,8 @@ namespace SolPlanilla.Interface
 
                                     objPeriodosDeObra.Obrero = new BeMaestroObrero
                                     {
-                                        CodigoAlterno = codigoEquivalencia.Codigo
+                                        CodigoAlterno = codigoEquivalencia.Codigo,
+                                        Empresa = GlobalVars.Empresa
                                     };
                                     objPeriodosDeObra.Jornal = objTrabSemana.Jornal;
                                     objPeriodosDeObra.Dominical = objTrabSemana.Dominical;

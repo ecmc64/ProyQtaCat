@@ -20,9 +20,12 @@ namespace SolPlanilla.BL
             if (persona.EstadoEntidad.Correcto && persona.EstadoEntidad.NumeroFilasAfectadas > 0)
             {
                 var oDa = new DaMaestroObrero();
-                pObrero = oDa.GetMaestroObrero(pObrero);
+                var obreroBe = oDa.GetMaestroObrero(pObrero);
 
                 pObrero = HelperEntidad.CopiarPropiedadesPersonaObrero(persona);
+
+                pObrero.Categoria = obreroBe.Categoria;
+                pObrero.CodigoAlterno = obreroBe.CodigoAlterno;
 
                 oDa = null;
 
@@ -84,6 +87,31 @@ namespace SolPlanilla.BL
 
 
             return listaObrero;
+        }
+
+        public BeMaestroObrero ConsultarObrero(BeMaestroEmpresa pEmpresa, string pCodigoAlterno)
+        {
+            var oDa = new DaMaestroObrero();
+            var obrero = oDa.GetMaestroObreroByCodigoAlterno(pEmpresa, pCodigoAlterno);
+
+            if (obrero.EstadoEntidad.Correcto && obrero.EstadoEntidad.NumeroFilasAfectadas > 0)
+            {
+                obrero.Empresa = pEmpresa;
+                var oDaPersona = new DaMaestroPersona();
+                var personaBe = oDaPersona.GetMaetroPersona(obrero);
+
+                var obreroBe = HelperEntidad.CopiarPropiedadesPersonaObrero(personaBe);
+
+                obreroBe.Categoria = obrero.Categoria;
+                obreroBe.CodigoAlterno = obrero.CodigoAlterno;
+
+                obrero = obreroBe;
+            }
+            else
+                obrero = null;
+
+            oDa = null;
+            return obrero;
         }
 
         public BeMaestroObrero GrabarObrero(BeMaestroObrero pObrero, bool pGrabar)

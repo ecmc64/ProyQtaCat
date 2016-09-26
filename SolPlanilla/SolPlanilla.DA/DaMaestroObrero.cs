@@ -73,6 +73,37 @@ namespace SolPlanilla.DA
             return obreros;
         }
 
+        public BeMaestroObrero GetMaestroObreroByCodigoAlterno(BeMaestroEmpresa pEmpresa, string pCodigoAlterno)
+        {
+            var obrero = new BeMaestroObrero();
+            try
+            {
+                var comandoSql = string.Concat(CadenaSelect, "FROM dbo.MaestroObrero WHERE IdPersona=@pIdPersona AND CodigoAlterno=@pCodigoAlterno");
+                var db = DatabaseFactory.CreateDatabase(HelperConsultas.CadenaConexion);
+                var cmd = db.GetSqlStringCommand(comandoSql);
+
+                cmd.Parameters.Add(HelperConsultas.CrearParametro(cmd, "@pIdEmpresa", DbType.Guid, pEmpresa.IdEmpresa));
+                cmd.Parameters.Add(HelperConsultas.CrearParametro(cmd, "@pCodigoAlterno", DbType.String, pCodigoAlterno));
+
+                var oReader = db.ExecuteReader(cmd);
+                var filas = 0;
+
+                if (oReader.Read())
+                {
+                    obrero = CargarEntidad(oReader);
+                    filas = 1;
+                }
+
+                obrero.EstadoEntidad = HelperConsultas.SetEstadoEntidad(true, filas, null);
+            }
+            catch (Exception ex)
+            {
+                ErrorConsulta = ex;
+                obrero.EstadoEntidad = HelperConsultas.SetEstadoEntidad(false, 0, ex);
+            }
+            return obrero;
+        }
+
         public BeMaestroObrero InsMaestroObrero(BeMaestroObrero pObrero)
         {
             try

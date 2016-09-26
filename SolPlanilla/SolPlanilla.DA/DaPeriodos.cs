@@ -149,14 +149,14 @@ namespace SolPlanilla.DA
                 periodo.Empresa = new BeMaestroEmpresa { IdEmpresa = HelperConsultas.GetValueSql<Guid>(pReader.GetValue(1)) };
                 periodo.Anio = HelperConsultas.GetValueSql<int>(pReader.GetValue(2));
                 periodo.Activo = HelperConsultas.GetValueSql<Boolean>(pReader.GetValue(3));
-                periodo.UsuarioCreador = HelperConsultas.GetValueSql<string>(pReader.GetValue(4));;
-                periodo.FechaCreacion = HelperConsultas.GetValueSql<DateTime>(pReader.GetValue(5));;
-                periodo.UsuarioModificador = HelperConsultas.GetValueSql<string>(pReader.GetValue(6));;
-                periodo.FechaModificacion = HelperConsultas.GetValueSql<DateTime>(pReader.GetValue(7));;
-                periodo.FechaInicio = HelperConsultas.GetValueSql<DateTime>(pReader.GetValue(8));;
-                periodo.FechaFin = HelperConsultas.GetValueSql<DateTime>(pReader.GetValue(9));;
-                periodo.SemanaInicio = HelperConsultas.GetValueSql<int>(pReader.GetValue(10));;
-                periodo.SemanaFin = HelperConsultas.GetValueSql<int>(pReader.GetValue(11));;
+                periodo.UsuarioCreador = HelperConsultas.GetValueSql<string>(pReader.GetValue(4));
+                periodo.FechaCreacion = HelperConsultas.GetValueSql<DateTime>(pReader.GetValue(5));
+                periodo.UsuarioModificador = HelperConsultas.GetValueSql<string>(pReader.GetValue(6));
+                periodo.FechaModificacion = HelperConsultas.GetValueSql<DateTime>(pReader.GetValue(7));
+                periodo.FechaInicio = HelperConsultas.GetValueSql<DateTime>(pReader.GetValue(8));
+                periodo.FechaFin = HelperConsultas.GetValueSql<DateTime>(pReader.GetValue(9));
+                periodo.SemanaInicio = HelperConsultas.GetValueSql<int>(pReader.GetValue(10));
+                periodo.SemanaFin = HelperConsultas.GetValueSql<int>(pReader.GetValue(11));
                 periodo.Mes = HelperConsultas.GetValueSql<int>(pReader.GetValue(12));
             }
             catch (Exception ex)
